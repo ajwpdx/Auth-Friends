@@ -5,7 +5,8 @@ import {connect} from 'react-redux'
 const initialformValues = {
     name: '',
     age: '',
-    email: ''
+    email: '',
+    id: Math.floor(Math.random()* 5000) + 10
 }
 
 const AddFriendForm = props => {
@@ -24,7 +25,7 @@ const AddFriendForm = props => {
     const handleSubmit = e => {
         e.preventDefault()
     
-        props.postSmurf(formValues)
+        props.addFriend(formValues)
         
         setFormValues(initialformValues)
     }

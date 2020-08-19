@@ -19,4 +19,13 @@ export const fetchFriends = () => dispatch => {
 
 
 
-export const addFriend = () => {return null}
+export const addFriend = (input) => dispatch => {
+    console.log('addFriend invoked >', input)
+    axiosWithAuth()
+    .post("/api/friends")
+    .then(res => {
+        console.log(res)
+        dispatch({type: ADD_FRIEND, payload: input})
+    })
+    .catch((err) => console.log(err));
+}
