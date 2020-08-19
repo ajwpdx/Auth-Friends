@@ -31,7 +31,7 @@ const AddFriendForm = props => {
     }
 
     return (
-        <div className='friend-card'>
+        <div className={props.isLoading ? "hidden" : 'friend-card'}>
             <h2>Add New Friend</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor='nameInput'>

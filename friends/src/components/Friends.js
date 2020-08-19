@@ -14,11 +14,15 @@ const Friends = (props) => {
     
     return ( 
     
-    <div className='friend-container'>
-        <AddFriendForm/>
+    <div className='friend-container'>        
+        <div className={props.isLoading ? "" : 'hidden'}>
+                <h1>Loading Friends Data...</h1>
+              </div>
+    
         {props.friends.map((item) => {
             return <FriendCard key = {item.id} friend = {item}/>
         })}
+        <AddFriendForm isLoading = {props.isLoading}/>
         </div>
     )
 
