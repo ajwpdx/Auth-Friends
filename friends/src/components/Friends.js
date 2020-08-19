@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import FriendCard from './FriendCard'
 
-import {fetchFriends, AddFriend} from '../utils/actions'
+import {fetchFriends} from '../utils/actions'
+import AddFriendForm from './AddFriendForm'
 
 const Friends = (props) => {
+    
+    useEffect(() => {
+        props.fetchFriends()
+    },[])
+    
+    
     return ( 
-    <div>
-        <p> Friends Go HERE </p> 
+    
+    <div className='friend-container'>
+        <AddFriendForm/>
+        {props.friends.map((item) => {
+            return <FriendCard key = {item.id} friend = {item}/>
+        })}
         </div>
     )
 
@@ -16,8 +28,10 @@ const mapStateToProps = state => {
     console.log(state)
 
     return {
-        ...state
+        friends: state.friends,
+        isLoading: state.isLoading,
+        error: state.error
     }
 }
 
-export default connect(mapStateToProps, { fetchFriends, AddFriend })(Friends)
+export default connect(mapStateToProps, { fetchFriends })(Friends)

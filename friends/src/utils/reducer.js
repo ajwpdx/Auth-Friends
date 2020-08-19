@@ -16,6 +16,13 @@ export const reducer = (state = intitialState, action) => {
                     isLoading: true,
                         error: ''
                 }
+            case FETCH_FRIENDS_SUCCESS:
+                return{
+                    ...state,
+                    friends: action.payload,
+                    isLoading: false,
+                    error: ''
+                }
                 default:
                     return state
         }
